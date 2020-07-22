@@ -22,5 +22,8 @@ g<-ggarrange(plotlist = list(g1, g2),
 # *** Save Outputs -----
 
 #Save your plot so you can use and find it later. 
-ggsave(filename = "graph.png", plot = g)
+counter<-0
+counter<-counter + 1
+filename = paste0(counter, "_TestAnalysis_Graph.png")
+ggsave(filename = paste0(outputfolder, filename), plot = g)
 g

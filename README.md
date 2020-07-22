@@ -69,12 +69,12 @@ to the user, but, personally, I use the following.
 
     # *** Save Outputs -----
 
-In the above example, I use “\# \*\*\* \[text\]” in an attempt to make a
+In the above example, I use `# *** [text] ----` in an attempt to make a
 level down subsection. Consider, “Correlation”, “Visualizations”, and
 “Save Outputs” are all part of doing an analysis. You can use anything
-to take the space of the asterisk (\*) but I think asterisks look best.
+to take the space of the asterisk (`*`) but I think asterisks look best.
 
-These headers work the same as if I wrote them as .
+These headers work the same as if I wrote them as `# Libraries ####`.
 
 Below is a short example of a reasonably organized R script that we will
 build on that uses the above structure.
@@ -229,11 +229,12 @@ lead to issues and typos. Further, what if we suddenly decided we wanted
 all graphs to have a new title or change the colors? We would have to
 change that in each plot individually.
 
-Thought this is a small example, I am sure you can see how that could
-become a massive problem in a long script you have been working
-tirelessly on.
+Thought this is a small example and this version of the code would
+really be sufficient, I am sure you can see how that could become a
+massive problem in a long script you have been working tirelessly on.
+(I’ll save the below file so you can view it later, too).
 
-For the sake of saving our work, I’ll call this file “analysis.R”
+#### `analysis.R`
 
     #' ---
     #' title: The best title
@@ -314,7 +315,7 @@ immediately come to mind:
 I usually try to keep all of my files to similar naming structure like
 this one.
 
-`"[Order]_[AnalysisName]_[Description].filetype"`
+`[Order]_[AnalysisName]_[Description].filetype`
 
 A few rules:
 
@@ -397,7 +398,7 @@ rawdata, figures, etc.
 Such that your new files would look like this and would all be saved in
 the “rscripts” folder:
 
-#### “functions.R”
+#### `functions.R`
 
     #' title: The best title
     #' author: You
@@ -441,7 +442,7 @@ the “rscripts” folder:
       return(g)
     }
 
-#### “data.R”
+#### `data.R`
 
     #' title: The best title
     #' author: You
@@ -466,7 +467,7 @@ the “rscripts” folder:
     ## "cty" = city miles per gallon
     ## "hwy" = highway miles per gallon
 
-#### “run.R”
+#### `run.R`
 
     #' title: The best title
     #' author: You
@@ -495,7 +496,10 @@ the “rscripts” folder:
     # *** Save Outputs -----
 
     #Save your plot so you can use and find it later. 
-    ggsave(filename = "graph.png", plot = g)
+    counter<-0
+    counter<-counter + 1
+    filename = paste0(counter, "_TestAnalysis_Graph.png")
+    ggsave(filename = paste0(outputfolder, "figures/", filename), plot = g)
 
     ## Saving 7 x 5 in image
 
@@ -517,11 +521,11 @@ R projects are important for:
 -   creating R Shiny apps, packages, etc. (beyond the scope of this
     example)
 
-To create a project for this work, click File&gt;New Project&gt;Existing
-Directory
+To create a project for this work, click
+`File`&gt;`New Project`&gt;`Existing Directory`
 
 We selected “Existing Directory” since we already have one. It is known
-as our parent directory and what I have been referring to as “./” in the
+as our parent directory and what I have been referring to as `./` in the
 directory name.
 
 Projects manifest themselves, more or less, as fancy folders where R has
@@ -539,7 +543,7 @@ automatically deposited the following files:
 Now, the project is loaded into RStudio and the name is displayed in the
 Projects toolbar (which is located on the far right side of the main
 toolbar). Additionally, the project (and all progress on the files) will
-be easily loadable from File&gt;Recent Projects.
+be easily loadable from `File`&gt;`Recent Projects`.
 
 If you want access to this R Project on GitHub, for example, you can
 access it with the below code.
