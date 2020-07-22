@@ -386,12 +386,12 @@ rawdata, figures, etc.
 
 #### 5.3. In a world where your analyses are a bit more complicated, I find that it is good to split your code into the following files:
 
--   “functions.R”, this file will be where all of the funcitons used to
+-   `functions.R`, this file will be where all of the funcitons used to
     run your analysis.
--   “data.R”, this file will load all of your data and edit it for your
+-   `data.R`, this file will load all of your data and edit it for your
     analysis. Never hand edit data from a source. If you can, always
     manipulate it so you never destroy your original data copy.
--   “run.R”, this file will source the other files you created and run
+-   `run.R`, this file will source the other files you created and run
     the analysis. We want this to have the bare-bones of what we need
     for our analysis.
 
@@ -552,7 +552,6 @@ access it with the below code.
     # usethis::use_course('https://github.com/emilyhmarkowitz/BestScriptingPractices/archive/master.zip')
 
 A NOAA README
--------------
 
 This repository is a scientific product and is not official
 communication of the National Oceanic and Atmospheric Administration, or

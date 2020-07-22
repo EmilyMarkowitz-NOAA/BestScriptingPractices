@@ -344,9 +344,9 @@ for (i in 1:length(listfiles)){ # Save all of those files to the rscripts folder
 
 #### 5.3. In a world where your analyses are a bit more complicated, I find that it is good to split your code into the following files: 
 
- - "functions.R", this file will be where all of the funcitons used to run your analysis. 
- - "data.R", this file will load all of your data and edit it for your analysis. Never hand edit data from a source. If you can, always manipulate it so you never destroy your original data copy. 
- - "run.R", this file will source the other files you created and run the analysis. We want this to have the bare-bones of what we need for our analysis. 
+ - `functions.R`, this file will be where all of the funcitons used to run your analysis. 
+ - `data.R`, this file will load all of your data and edit it for your analysis. Never hand edit data from a source. If you can, always manipulate it so you never destroy your original data copy. 
+ - `run.R`, this file will source the other files you created and run the analysis. We want this to have the bare-bones of what we need for our analysis. 
 
 
 Such that your new files would look like this and would all be saved in the "rscripts" folder: 
@@ -491,7 +491,7 @@ If you want access to this R Project on GitHub, for example, you can access it w
 # usethis::use_course('https://github.com/emilyhmarkowitz/BestScriptingPractices/archive/master.zip')
 ```
 
-## A NOAA README
+A NOAA README
 
 This repository is a scientific product and is not official communication of the National Oceanic and Atmospheric Administration, or the United States Department of Commerce. All NOAA GitHub project code is provided on an ‘as is’ basis and the user assumes responsibility for its use. Any claims against the Department of Commerce or Department of Commerce bureaus stemming from the use of this GitHub project will be governed by all applicable Federal law. Any reference to specific commercial products, processes, or services by service mark, trademark, manufacturer, or otherwise, does not constitute or imply their endorsement, recommendation or favoring by the Department of Commerce. The Department of Commerce seal and logo, or the seal and logo of a DOC bureau, shall not be used in any manner to imply endorsement of any commercial product or activity by DOC or the United States Government.
 
