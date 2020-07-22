@@ -25,7 +25,9 @@ Below I list a few commandments of R scripting that will guide us through this l
  5. Predictable folder structure
  6. Save scripts in an "R Project"
 
-## 1. Conform to a set and predictable script structure
+We'll go through all of these in some detail with an example script!
+
+### 1. Conform to a set and predictable script structure
 
 First, so you can see exactly what you are building, we are going to open the document outline in R Studio. To open the document outline, either: 
 
@@ -38,7 +40,7 @@ Outlines are available for a document types, including R Markdown and R Scripts.
 
 In the case of an R script, we would follow a slightly different basic structure by providing your metadata about the document and subsection headers. 
 
-### 1.1. Provide your metadata about the document (not required, but helpful)
+#### 1.1. Provide your metadata about the document (not required, but helpful)
 
 ```{r}
 #' ---
@@ -48,7 +50,7 @@ In the case of an R script, we would follow a slightly different basic structure
 #' ---
 ```
 
-### 1.2. Add your subsections
+#### 1.2. Add your subsections
 
 You can view subsections in your document outline. This structure is up to the user, but, personally, I use the following. 
 
@@ -127,7 +129,7 @@ g
 
 This is a great start! Get ready, there are a few more things to do!
 
-## 2. Annotate
+### 2. Annotate
 
 So, what is actually happening in this script? I just wrote it, so I know, in this moment, exactly what is going on. But will "future me" know? They are pretty forgetful and like quick answers. As to not upset them, it might be best to write them a few notes in the document right now. We can easily do that with a single hash mark (#) before comment text. See below how I integrate it into the script we just wrote.
 
@@ -200,7 +202,7 @@ g
 
 ```
 
-## 3.  Never repeat code
+### 3.  Never repeat code
 
 I see a lot of redundancy in this code. What if I told you I could remove a third of the content in this script with one simple function? Repeating code to do the same thing over and over again will inevitably lead to issues and typos. Further, what if we suddenly decided we wanted all graphs to have a new title or change the colors? We would have to change that in each plot individually. 
 
@@ -268,7 +270,7 @@ g
 
 ```
 
-## 4. Name files with predictable and helpful names
+### 4. Name files with predictable and helpful names
 
 "graph.png" is not a terribly helpful name for any file. A few questions immediately come to mind: 
 
@@ -303,11 +305,11 @@ ggsave(filename = filename, plot = g)
 ```
 
 
-## 5. Predictable folder structure
+### 5. Predictable folder structure
 
 Let's say that you are working on this analysis over the course of several months and you don't want to overwrite anything you've done or get lost in a sea of files. It's a little complicated to set up, but I suggest the following: 
 
-### 5.1. Set up three new folders
+#### 5.1. Set up three new folders
 
  - "rscripts", where you will save all of your rscripts, including this script we have been working on. 
  - "data" (not really relevant here, but when you have your own data, it will be!)
@@ -319,7 +321,7 @@ dir.create(path = "./data")
 dir.create(path = "./output")
 ```
 
-### 5.2. Create a folder for that data run
+#### 5.2. Create a folder for that data run
 
 For each day's run of your analysis, you might like to set up a new file to save everything in. Within that folder, you might also like to keep a copy of what you used to create this file. I recommend automatically creating folders within this new output folder for your rscripts, rawdata, figures, etc.
 
@@ -340,7 +342,7 @@ for (i in 1:length(listfiles)){ # Save all of those files to the rscripts folder
 
 ```
 
-### 5.3. In a world where your analyses are a bit more complicated, I find that it is good to split your code into the following files: 
+#### 5.3. In a world where your analyses are a bit more complicated, I find that it is good to split your code into the following files: 
 
  - "functions.R", this file will be where all of the funcitons used to run your analysis. 
  - "data.R", this file will load all of your data and edit it for your analysis. Never hand edit data from a source. If you can, always manipulate it so you never destroy your original data copy. 
@@ -454,7 +456,7 @@ g
 
 ```
 
-## 6. Save scripts in an "R Project"
+### 6. Save scripts in an "R Project"
 
 You can find more information about projects here: https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects
 
@@ -483,7 +485,7 @@ If you want access to this R Project on GitHub, for example, you can access it w
 # usethis::use_course('https://github.com/emilyhmarkowitz/BestScriptingPractices/archive/master.zip')
 ```
 
-## By the way... 
+## A NOAA README
 
 This repository is a scientific product and is not official communication of the National Oceanic and Atmospheric Administration, or the United States Department of Commerce. All NOAA GitHub project code is provided on an ‘as is’ basis and the user assumes responsibility for its use. Any claims against the Department of Commerce or Department of Commerce bureaus stemming from the use of this GitHub project will be governed by all applicable Federal law. Any reference to specific commercial products, processes, or services by service mark, trademark, manufacturer, or otherwise, does not constitute or imply their endorsement, recommendation or favoring by the Department of Commerce. The Department of Commerce seal and logo, or the seal and logo of a DOC bureau, shall not be used in any manner to imply endorsement of any commercial product or activity by DOC or the United States Government.
 

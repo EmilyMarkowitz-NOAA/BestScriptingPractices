@@ -20,8 +20,9 @@ praises if you follow these.
 5.  Predictable folder structure
 6.  Save scripts in an “R Project”
 
-1. Conform to a set and predictable script structure
-----------------------------------------------------
+We’ll go through all of these in some detail with an example script!
+
+### 1. Conform to a set and predictable script structure
 
 First, so you can see exactly what you are building, we are going to
 open the document outline in R Studio. To open the document outline,
@@ -41,7 +42,7 @@ In the case of an R script, we would follow a slightly different basic
 structure by providing your metadata about the document and subsection
 headers.
 
-### 1.1. Provide your metadata about the document (not required, but helpful)
+#### 1.1. Provide your metadata about the document (not required, but helpful)
 
     #' ---
     #' title: The best title
@@ -49,7 +50,7 @@ headers.
     #' date: YYYY-MM-DD
     #' ---
 
-### 1.2. Add your subsections
+#### 1.2. Add your subsections
 
 You can view subsections in your document outline. This structure is up
 to the user, but, personally, I use the following.
@@ -135,8 +136,7 @@ build on that uses the above structure.
 
 This is a great start! Get ready, there are a few more things to do!
 
-2. Annotate
------------
+### 2. Annotate
 
 So, what is actually happening in this script? I just wrote it, so I
 know, in this moment, exactly what is going on. But will “future me”
@@ -220,8 +220,7 @@ purposes of this example I want to be extra explicit.
 
 ![](README_files/figure-markdown_strict/unnamed-chunk-4-1.png)
 
-3. Never repeat code
---------------------
+### 3. Never repeat code
 
 I see a lot of redundancy in this code. What if I told you I could
 remove a third of the content in this script with one simple function?
@@ -301,8 +300,7 @@ For the sake of saving our work, I’ll call this file “analysis.R”
 
 ![](README_files/figure-markdown_strict/unnamed-chunk-5-1.png)
 
-4. Name files with predictable and helpful names
-------------------------------------------------
+### 4. Name files with predictable and helpful names
 
 “graph.png” is not a terribly helpful name for any file. A few questions
 immediately come to mind:
@@ -342,15 +340,14 @@ To `1_TestAnalysis_Graph.png` by using the below code:
 
     ## Saving 7 x 5 in image
 
-5. Predictable folder structure
--------------------------------
+### 5. Predictable folder structure
 
 Let’s say that you are working on this analysis over the course of
 several months and you don’t want to overwrite anything you’ve done or
 get lost in a sea of files. It’s a little complicated to set up, but I
 suggest the following:
 
-### 5.1. Set up three new folders
+#### 5.1. Set up three new folders
 
 -   “rscripts”, where you will save all of your rscripts, including this
     script we have been working on.
@@ -364,7 +361,7 @@ suggest the following:
     dir.create(path = "./data")
     dir.create(path = "./output")
 
-### 5.2. Create a folder for that data run
+#### 5.2. Create a folder for that data run
 
 For each day’s run of your analysis, you might like to set up a new file
 to save everything in. Within that folder, you might also like to keep a
@@ -386,7 +383,7 @@ rawdata, figures, etc.
                 overwrite = T)
     }
 
-### 5.3. In a world where your analyses are a bit more complicated, I find that it is good to split your code into the following files:
+#### 5.3. In a world where your analyses are a bit more complicated, I find that it is good to split your code into the following files:
 
 -   “functions.R”, this file will be where all of the funcitons used to
     run your analysis.
@@ -506,8 +503,7 @@ the “rscripts” folder:
 
 ![](README_files/figure-markdown_strict/unnamed-chunk-12-1.png)
 
-6. Save scripts in an “R Project”
----------------------------------
+### 6. Save scripts in an “R Project”
 
 You can find more information about projects here:
 <a href="https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects" class="uri">https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects</a>
@@ -551,8 +547,8 @@ access it with the below code.
     # library(usethis) # Automate package and project setup tasks that are otherwise performed manually.
     # usethis::use_course('https://github.com/emilyhmarkowitz/BestScriptingPractices/archive/master.zip')
 
-By the way…
------------
+A NOAA README
+-------------
 
 This repository is a scientific product and is not official
 communication of the National Oceanic and Atmospheric Administration, or
