@@ -69,7 +69,7 @@ You can view subsections in your document outline. This structure is up to the u
 
 ```
 
-In the above example, I use "# *** [text]" in an attempt to make a level down subsection. Consider, "Correlation", "Visualizations", and "Save Outputs" are all part of doing an analysis. You can use anything to take the space of the aesterisk (*) but I think aesterisks look best. 
+In the above example, I use "# *** [text]" in an attempt to make a level down subsection. Consider, "Correlation", "Visualizations", and "Save Outputs" are all part of doing an analysis. You can use anything to take the space of the asterisk (*) but I think asterisks look best. 
 
 These headers work the same as if I wrote them as `r # Libraries ####`. 
 
@@ -129,7 +129,7 @@ This is a great start! Get ready, there are a few more things to do!
 
 ## Annotate
 
-So, what is actually happening in this script? I just wrote it, so I know, in this moment, exactly what is going on. But will "futrue me" know? They are pretty forgetful and like quick answers. As to not upset them, it might be best to write them a few notes in the document right now. We can easily do that with a single hash mark (#) before comment text. See below how I integrate it into the script we just wrote.
+So, what is actually happening in this script? I just wrote it, so I know, in this moment, exactly what is going on. But will "future me" know? They are pretty forgetful and like quick answers. As to not upset them, it might be best to write them a few notes in the document right now. We can easily do that with a single hash mark (#) before comment text. See below how I integrate it into the script we just wrote.
 
 Admittedly, I don't usually write this many comments, but for the purposes of this example I want to be extra explicit. 
 
@@ -202,7 +202,7 @@ g
 
 ##  Never repeat code
 
-I see a lot of redundancy in this code. What if I told you I could remove a third of the content in this script with one simple funciton? Repeting code to do the same thing over and over again will inevitably lead to issues and typos. Further, what if we suddenly decided we wanted all graphs to have a new title or change the colors? We would have to change that in each plot individually. 
+I see a lot of redundancy in this code. What if I told you I could remove a third of the content in this script with one simple function? Repeating code to do the same thing over and over again will inevitably lead to issues and typos. Further, what if we suddenly decided we wanted all graphs to have a new title or change the colors? We would have to change that in each plot individually. 
 
 Thought this is a small example, I am sure you can see how that could become a massive problem in a long script you have been working tirelessly on. 
 
@@ -274,17 +274,17 @@ g
 
  - What analysis does this plot belong to?
  - At what part of the analysis was this output created? e.g., order?
- - Why do I care about this analyis? e.g., a more descriptive name?
+ - Why do I care about this analysis? e.g., a more descriptive name?
  - What run is this analysis from? e.g., date? (something to think about but skipping this for now. We'll get to it next.)
  
-I usually try to keep all of my files to similar naming strucutre like this one. 
+I usually try to keep all of my files to similar naming structure like this one. 
 
-"[Order]_[AnalysisName]_[Description].filetype"
+`"[Order]_[AnalysisName]_[Description].filetype"`
 
 A few rules: 
 
- - No spaces. You can use ThisLetterCasing to seperate words
- - Underscores (_) or dashes (-) can be used to seperate ideas so it can be easy to read. 
+ - No spaces. You can use ThisLetterCasing to separate words
+ - Underscores (_) or dashes (-) can be used to separate ideas so it can be easy to read. 
  - Names should be kept as short as possible. Some applications (including R, though it varies by action and file type) have a letter count limit on file names.
 
 With this in mind, I might change:
@@ -313,7 +313,7 @@ Let's say that you are working on this analysis over the course of several month
  - "data" (not really relevant here, but when you have your own data, it will be!)
  - "output", where results from your analysis will go. 
 
-```{r}
+```{r, warning=FALSE}
 dir.create(path = "./rscripts")
 dir.create(path = "./data")
 dir.create(path = "./output")
@@ -321,9 +321,9 @@ dir.create(path = "./output")
 
 ### 2. Create a folder for that data run
 
-For each day's run of your analysis, you might like to set up a new file to save everything in. Within that folder, you might also like to keep a copy of what you used to create this file. I recommend automatically creating folders within this new output folder for your rscipts, rawdata, figures, etc.
+For each day's run of your analysis, you might like to set up a new file to save everything in. Within that folder, you might also like to keep a copy of what you used to create this file. I recommend automatically creating folders within this new output folder for your rscripts, rawdata, figures, etc.
 
-```{r}
+```{r, warning=FALSE}
 # Directories -------
 outputfolder<-paste0("./output/TestAnalysis_", Sys.Date(), "/")
 dir.create(path = outputfolder) # Create folder for today's analysis run
@@ -343,14 +343,14 @@ for (i in 1:length(listfiles)){ # Save all of those files to the rscripts folder
 ### 3. In a world where your analyses are a bit more complicated, I find that it is good to split your code into the following files: 
 
  - "functions.R", this file will be where all of the funcitons used to run your analysis. 
- - "data.R", this file will load all of your data and edit it for your analysis. Never hand edit data from a source. If you can, always manipulate it so you never distroy your origional data copy. 
- - "run.R", this file will source the other files you created and run the analysis. We want this to have the bare-bones of what we need for our anlaysis. 
+ - "data.R", this file will load all of your data and edit it for your analysis. Never hand edit data from a source. If you can, always manipulate it so you never destroy your original data copy. 
+ - "run.R", this file will source the other files you created and run the analysis. We want this to have the bare-bones of what we need for our analysis. 
 
 
 Such that your new files would look like this and would all be saved in the "rscripts" folder: 
 
-"functions.R"
-```{r}
+#### "functions.R"
+```{r, warning=FALSE}
 #' title: The best title
 #' author: You
 #' date: YYYY-MM-DD
@@ -396,7 +396,7 @@ createplot<-function(x, y) {
 
 ```
 
-"data.R"
+#### "data.R"
 ```{r}
 #' title: The best title
 #' author: You
@@ -409,9 +409,13 @@ library(ggplot2) # Makes pretty plots
 
 # Download data describing Fuel economy data from 1999 to 2008 for 38 popular models of cars. 
 # This data is built into the ggplot2 library. Use "?mpg" to learn more about this dataset. 
+
 data(mpg)
+
 #Save the rawdata you used for an analysis (if you want to)
+
 write.csv(x = data.frame(mpg), file = paste0(outputfolder, "rawdata/mpg.csv"))
+
 #Columns of interest include: 
 ## "displ" = engine displacement, in litres
 ## "cty" = city miles per gallon
@@ -419,8 +423,8 @@ write.csv(x = data.frame(mpg), file = paste0(outputfolder, "rawdata/mpg.csv"))
 
 ```
 
-"run.R"
-```{r}
+#### "run.R"
+```{r, warning=FALSE}
 #' title: The best title
 #' author: You
 #' date: YYYY-MM-DD
@@ -454,16 +458,16 @@ g
 
 You can find more information about projects here: https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects
 
-R projects are imporant for: 
+R projects are important for: 
 
  - organizing your, well, projects
- - sharing your projects to GitHub
- - so you can establish a 'realitive' directory (as opposed to a local directory that requires a specific address in your computer)
+ - sharing your projects to Git Hub
+ - so you can establish a 'relative' directory (as opposed to a local directory that requires a specific address in your computer)
  - creating R Shiny apps, packages, etc. (beyond the scope of this example)
  
 To create a project for this work, click File>New Project>Existing Directory
  
-We selected "Existing Directory" since we already have one. It is known as our parent directory and what I have been refering to as "./" in the directory name. 
+We selected "Existing Directory" since we already have one. It is known as our parent directory and what I have been referring to as "./" in the directory name. 
 
 Projects manifest themselves, more or less, as fancy folders where R has automatically deposited the following files: 
 
@@ -475,8 +479,8 @@ Now, the project is loaded into RStudio and the name is displayed in the Project
 If you want access to this R Project on GitHub, for example, you can access it with the below code. 
 
 ```{r}
-library(usethis) # Automate package and project setup tasks that are otherwise performed manually.
-usethis::use_course('https://github.com/emilyhmarkowitz/BestScriptingPractices/archive/master.zip')
+# library(usethis) # Automate package and project setup tasks that are otherwise performed manually.
+# usethis::use_course('https://github.com/emilyhmarkowitz/BestScriptingPractices/archive/master.zip')
 ```
 
 ## By the way... 

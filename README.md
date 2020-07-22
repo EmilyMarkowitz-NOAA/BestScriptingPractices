@@ -73,8 +73,7 @@ to the user, but, personally, I use the following.
 In the above example, I use “\# \*\*\* \[text\]” in an attempt to make a
 level down subsection. Consider, “Correlation”, “Visualizations”, and
 “Save Outputs” are all part of doing an analysis. You can use anything
-to take the space of the aesterisk (\*) but I think aesterisks look
-best.
+to take the space of the asterisk (\*) but I think asterisks look best.
 
 These headers work the same as if I wrote them as .
 
@@ -142,7 +141,7 @@ Annotate
 --------
 
 So, what is actually happening in this script? I just wrote it, so I
-know, in this moment, exactly what is going on. But will “futrue me”
+know, in this moment, exactly what is going on. But will “future me”
 know? They are pretty forgetful and like quick answers. As to not upset
 them, it might be best to write them a few notes in the document right
 now. We can easily do that with a single hash mark (\#) before comment
@@ -227,8 +226,8 @@ Never repeat code
 -----------------
 
 I see a lot of redundancy in this code. What if I told you I could
-remove a third of the content in this script with one simple funciton?
-Repeting code to do the same thing over and over again will inevitably
+remove a third of the content in this script with one simple function?
+Repeating code to do the same thing over and over again will inevitably
 lead to issues and typos. Further, what if we suddenly decided we wanted
 all graphs to have a new title or change the colors? We would have to
 change that in each plot individually.
@@ -312,19 +311,19 @@ immediately come to mind:
 
 -   What analysis does this plot belong to?
 -   At what part of the analysis was this output created? e.g., order?
--   Why do I care about this analyis? e.g., a more descriptive name?
+-   Why do I care about this analysis? e.g., a more descriptive name?
 -   What run is this analysis from? e.g., date? (something to think
     about but skipping this for now. We’ll get to it next.)
 
-I usually try to keep all of my files to similar naming strucutre like
+I usually try to keep all of my files to similar naming structure like
 this one.
 
-“\[Order\]*\[AnalysisName\]*\[Description\].filetype”
+`"[Order]_[AnalysisName]_[Description].filetype"`
 
 A few rules:
 
--   No spaces. You can use ThisLetterCasing to seperate words
--   Underscores (\_) or dashes (-) can be used to seperate ideas so it
+-   No spaces. You can use ThisLetterCasing to separate words
+-   Underscores (\_) or dashes (-) can be used to separate ideas so it
     can be easy to read.
 -   Names should be kept as short as possible. Some applications
     (including R, though it varies by action and file type) have a
@@ -364,47 +363,24 @@ suggest the following:
 <!-- -->
 
     dir.create(path = "./rscripts")
-
-    ## Warning in dir.create(path = "./rscripts"): '.\rscripts' already exists
-
     dir.create(path = "./data")
-
-    ## Warning in dir.create(path = "./data"): '.\data' already exists
-
     dir.create(path = "./output")
-
-    ## Warning in dir.create(path = "./output"): '.\output' already exists
 
 ### 2. Create a folder for that data run
 
 For each day’s run of your analysis, you might like to set up a new file
 to save everything in. Within that folder, you might also like to keep a
 copy of what you used to create this file. I recommend automatically
-creating folders within this new output folder for your rscipts,
+creating folders within this new output folder for your rscripts,
 rawdata, figures, etc.
 
     # Directories -------
     outputfolder<-paste0("./output/TestAnalysis_", Sys.Date(), "/")
     dir.create(path = outputfolder) # Create folder for today's analysis run
 
-    ## Warning in dir.create(path = outputfolder): '.\output\TestAnalysis_2020-07-22'
-    ## already exists
-
     dir.create(path = paste0(outputfolder, "rawdata"))
-
-    ## Warning in dir.create(path = paste0(outputfolder, "rawdata")): '.
-    ## \output\TestAnalysis_2020-07-22\rawdata' already exists
-
     dir.create(path = paste0(outputfolder, "figures"))
-
-    ## Warning in dir.create(path = paste0(outputfolder, "figures")): '.
-    ## \output\TestAnalysis_2020-07-22\figures' already exists
-
     dir.create(path = paste0(outputfolder, "rscripts"))
-
-    ## Warning in dir.create(path = paste0(outputfolder, "rscripts")): '.
-    ## \output\TestAnalysis_2020-07-22\rscripts' already exists
-
     listfiles<-list.files(path = "./rscripts/") #Find all files in "./rscripts"
     for (i in 1:length(listfiles)){ # Save all of those files to the rscripts folder in the output folder
       file.copy(from = paste0("./rscripts/", listfiles[i]), 
@@ -418,15 +394,15 @@ rawdata, figures, etc.
     run your analysis.
 -   “data.R”, this file will load all of your data and edit it for your
     analysis. Never hand edit data from a source. If you can, always
-    manipulate it so you never distroy your origional data copy.
+    manipulate it so you never destroy your original data copy.
 -   “run.R”, this file will source the other files you created and run
     the analysis. We want this to have the bare-bones of what we need
-    for our anlaysis.
+    for our analysis.
 
 Such that your new files would look like this and would all be saved in
 the “rscripts” folder:
 
-“functions.R”
+#### “functions.R”
 
     #' title: The best title
     #' author: You
@@ -441,24 +417,9 @@ the “rscripts” folder:
     outputfolder<-paste0("./output/TestAnalysis_", Sys.Date(), "/")
     dir.create(path = outputfolder) # Create folder for today's analysis run
 
-    ## Warning in dir.create(path = outputfolder): '.\output\TestAnalysis_2020-07-22'
-    ## already exists
-
     dir.create(path = paste0(outputfolder, "rawdata"))
-
-    ## Warning in dir.create(path = paste0(outputfolder, "rawdata")): '.
-    ## \output\TestAnalysis_2020-07-22\rawdata' already exists
-
     dir.create(path = paste0(outputfolder, "figures"))
-
-    ## Warning in dir.create(path = paste0(outputfolder, "figures")): '.
-    ## \output\TestAnalysis_2020-07-22\figures' already exists
-
     dir.create(path = paste0(outputfolder, "rscripts"))
-
-    ## Warning in dir.create(path = paste0(outputfolder, "rscripts")): '.
-    ## \output\TestAnalysis_2020-07-22\rscripts' already exists
-
     listfiles<-list.files(path = "./rscripts/") #Find all files in "./rscripts"
     for (i in 1:length(listfiles)){ # Save all of those files to the rscripts folder in the output folder
       file.copy(from = paste0("./rscripts/", listfiles[i]), 
@@ -485,7 +446,7 @@ the “rscripts” folder:
       return(g)
     }
 
-“data.R”
+#### “data.R”
 
     #' title: The best title
     #' author: You
@@ -498,15 +459,19 @@ the “rscripts” folder:
 
     # Download data describing Fuel economy data from 1999 to 2008 for 38 popular models of cars. 
     # This data is built into the ggplot2 library. Use "?mpg" to learn more about this dataset. 
+
     data(mpg)
+
     #Save the rawdata you used for an analysis (if you want to)
+
     write.csv(x = data.frame(mpg), file = paste0(outputfolder, "rawdata/mpg.csv"))
+
     #Columns of interest include: 
     ## "displ" = engine displacement, in litres
     ## "cty" = city miles per gallon
     ## "hwy" = highway miles per gallon
 
-“run.R”
+#### “run.R”
 
     #' title: The best title
     #' author: You
@@ -516,19 +481,6 @@ the “rscripts” folder:
     # Source Scripts -------
 
     source("./rscripts/functions.R")
-
-    ## Warning in dir.create(path = outputfolder): '.\output\TestAnalysis_2020-07-22'
-    ## already exists
-
-    ## Warning in dir.create(path = paste0(outputfolder, "rawdata")): '.
-    ## \output\TestAnalysis_2020-07-22\rawdata' already exists
-
-    ## Warning in dir.create(path = paste0(outputfolder, "figures")): '.
-    ## \output\TestAnalysis_2020-07-22\figures' already exists
-
-    ## Warning in dir.create(path = paste0(outputfolder, "rscripts")): '.
-    ## \output\TestAnalysis_2020-07-22\rscripts' already exists
-
     source("./rscripts/data.R")
 
     # Analysis -----
@@ -562,11 +514,11 @@ Save project in an “R Project”
 You can find more information about projects here:
 <a href="https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects" class="uri">https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects</a>
 
-R projects are imporant for:
+R projects are important for:
 
 -   organizing your, well, projects
--   sharing your projects to GitHub
--   so you can establish a ‘realitive’ directory (as opposed to a local
+-   sharing your projects to Git Hub
+-   so you can establish a ‘relative’ directory (as opposed to a local
     directory that requires a specific address in your computer)
 -   creating R Shiny apps, packages, etc. (beyond the scope of this
     example)
@@ -575,7 +527,7 @@ To create a project for this work, click File&gt;New Project&gt;Existing
 Directory
 
 We selected “Existing Directory” since we already have one. It is known
-as our parent directory and what I have been refering to as “./” in the
+as our parent directory and what I have been referring to as “./” in the
 directory name.
 
 Projects manifest themselves, more or less, as fancy folders where R has
@@ -598,18 +550,8 @@ be easily loadable from File&gt;Recent Projects.
 If you want access to this R Project on GitHub, for example, you can
 access it with the below code.
 
-    library(usethis) # Automate package and project setup tasks that are otherwise performed manually.
-    usethis::use_course('https://github.com/emilyhmarkowitz/BestScriptingPractices/archive/master.zip')
-
-    ## √ Downloading from 'https://github.com/emilyhmarkowitz/BestScriptingPractices/archive/master.zip'
-
-    ## Downloaded: 0.01 MB  Downloaded: 0.01 MB  Downloaded: 0.02 MB  Downloaded: 0.02 MB  Downloaded: 0.02 MB  Downloaded: 0.02 MB
-
-    ## 
-
-    ## √ Download stored in 'C:/Users/Emii/Desktop/BestScriptingPractices-master.zip'
-
-    ## √ Unpacking ZIP file into 'BestScriptingPractices-master/' (16 files extracted)
+    # library(usethis) # Automate package and project setup tasks that are otherwise performed manually.
+    # usethis::use_course('https://github.com/emilyhmarkowitz/BestScriptingPractices/archive/master.zip')
 
 By the way…
 -----------
