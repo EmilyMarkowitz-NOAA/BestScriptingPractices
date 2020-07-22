@@ -3,10 +3,7 @@ title: "Best Scripting Practices"
 author: "Emily Markowitz"
 date: "7/22/2020"
 output: 
-  html_document:
-    toc: true
-    toc_depth: 4
-    number_sections: true
+  md_document
 ---
 
 ```{r setup, include=FALSE}
@@ -115,7 +112,7 @@ g1<-ggplot(mpg, aes(displ, hwy)) +
 g2<-ggplot(mpg, aes(displ, cty)) +
   geom_point() + 
   geom_smooth(method = "lm") + 
-  ggtitle(paste0("Pearson correlation coefficient = ", round(cor_mpg, digits = 2))) +
+  ggtitle(paste0("Pearson correlation coefficient = ", round(cor_cty, digits = 2))) +
   ylim(5, 45)
 
 g<-ggarrange(plotlist = list(g1, g2),
@@ -188,7 +185,7 @@ g1<-ggplot(mpg, aes(displ, hwy)) +
 g2<-ggplot(mpg, aes(displ, cty)) +
   geom_point() + 
   geom_smooth(method = "lm") + 
-  ggtitle(paste0("Pearson correlation coefficient = ", round(cor_mpg, digits = 2))) +
+  ggtitle(paste0("Pearson correlation coefficient = ", round(cor_cty, digits = 2))) +
     ylim(5, 45)
 
 ## arrange these two plots side by side so we can compare differences between the plots. 
@@ -334,10 +331,10 @@ dir.create(path = outputfolder) # Create folder for today's analysis run
 dir.create(path = paste0(outputfolder, "rawdata"))
 dir.create(path = paste0(outputfolder, "figures"))
 dir.create(path = paste0(outputfolder, "rscripts"))
-listfiles<-list.files(path = dir.scripts, pattern = date0) #Find all files in "./rscripts"
+listfiles<-list.files(path = "./rscripts/") #Find all files in "./rscripts"
 for (i in 1:length(listfiles)){ # Save all of those files to the rscripts folder in the output folder
-  file.copy(from = paste0(dir.scripts, listfiles[i]), 
-            to = paste0(dir.out, "/rscripts/", listfiles[i]), 
+  file.copy(from = paste0("./rscripts/", listfiles[i]), 
+            to = paste0("./",outputfolder,"/rscripts/", listfiles[i]), 
             overwrite = T)
 }
 
@@ -372,8 +369,8 @@ dir.create(path = paste0(outputfolder, "figures"))
 dir.create(path = paste0(outputfolder, "rscripts"))
 listfiles<-list.files(path = "./rscripts/") #Find all files in "./rscripts"
 for (i in 1:length(listfiles)){ # Save all of those files to the rscripts folder in the output folder
-  file.copy(from = paste0(dir.scripts, listfiles[i]), 
-            to = paste0(dir.out, "/rscripts/", listfiles[i]), 
+  file.copy(from = paste0("./rscripts/", listfiles[i]), 
+            to = paste0("./",outputfolder,"/rscripts/", listfiles[i]), 
             overwrite = T)
 }
 
@@ -414,7 +411,7 @@ library(ggplot2) # Makes pretty plots
 # This data is built into the ggplot2 library. Use "?mpg" to learn more about this dataset. 
 data(mpg)
 #Save the rawdata you used for an analysis (if you want to)
-write.csv(x = data.frame(mpg), file = paste0(foldername, "rawdata/mpg.csv"))
+write.csv(x = data.frame(mpg), file = paste0(outputfolder, "rawdata/mpg.csv"))
 #Columns of interest include: 
 ## "displ" = engine displacement, in litres
 ## "cty" = city miles per gallon
@@ -475,6 +472,14 @@ Projects manifest themselves, more or less, as fancy folders where R has automat
 
 Now, the project is loaded into RStudio and the name is displayed in the Projects toolbar (which is located on the far right side of the main toolbar). Additionally, the project (and all progress on the files) will be easily loadable from File>Recent Projects. 
 
+If you want access to this R Project on GitHub, for example, you can access it with the below code. 
 
+```{r}
+library(usethis) # Automate package and project setup tasks that are otherwise performed manually.
+usethis::use_course('https://github.com/emilyhmarkowitz/BestScriptingPractices/archive/master.zip')
+```
 
+## By the way... 
+
+This repository is a scientific product and is not official communication of the National Oceanic and Atmospheric Administration, or the United States Department of Commerce. All NOAA GitHub project code is provided on an ‘as is’ basis and the user assumes responsibility for its use. Any claims against the Department of Commerce or Department of Commerce bureaus stemming from the use of this GitHub project will be governed by all applicable Federal law. Any reference to specific commercial products, processes, or services by service mark, trademark, manufacturer, or otherwise, does not constitute or imply their endorsement, recommendation or favoring by the Department of Commerce. The Department of Commerce seal and logo, or the seal and logo of a DOC bureau, shall not be used in any manner to imply endorsement of any commercial product or activity by DOC or the United States Government.
 

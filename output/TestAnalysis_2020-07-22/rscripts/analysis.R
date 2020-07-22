@@ -1,3 +1,4 @@
+#' ---
 #' title: The best title
 #' author: You
 #' date: YYYY-MM-DD
@@ -6,20 +7,15 @@
 library(ggplot2) # Makes pretty plots
 library(ggpubr) # Arranges multiple ggplots on the same page
 
+# Import Data -----
 
-# Directories -------
-outputfolder<-paste0("./output/TestAnalysis_", Sys.Date(), "/")
-dir.create(path = outputfolder) # Create folder for today's analysis run
-
-dir.create(path = paste0(outputfolder, "rawdata"))
-dir.create(path = paste0(outputfolder, "figures"))
-dir.create(path = paste0(outputfolder, "rscripts"))
-listfiles<-list.files(path = "./rscripts/") #Find all files in "./rscripts"
-for (i in 1:length(listfiles)){ # Save all of those files to the rscripts folder in the output folder
-  file.copy(from = paste0("./rscripts/", listfiles[i]), 
-            to = paste0("./",outputfolder,"/rscripts/", listfiles[i]), 
-            overwrite = T)
-}
+# Download data describing Fuel economy data from 1999 to 2008 for 38 popular models of cars. 
+# This data is built into the ggplot2 library. Use "?mpg" to learn more about this dataset. 
+data(mpg)
+#Columns of interest include: 
+## "displ" = engine displacement, in litres
+## "cty" = city miles per gallon
+## "hwy" = highway miles per gallon
 
 # Functions -------
 
@@ -39,3 +35,22 @@ createplot<-function(x, y) {
   #return outputs our graph from the function. 
   return(g)
 }
+
+# Analysis -----
+
+# *** Visualizations ------
+
+#Use createplot to output our two finished plots. 
+g1<-createplot(x = mpg$displ, y = mpg$hwy)
+
+g2<-createplot(x = mpg$displ, y = mpg$cty)
+
+## arrange these two plots side by side so we can compare differences between the plots. 
+g<-ggarrange(plotlist = list(g1, g2),
+             nrow=1, ncol = 2)
+
+# *** Save Outputs -----
+
+#Save your plot so you can use and find it later. 
+ggsave(filename = "graph.png", plot = g)
+g
