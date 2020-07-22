@@ -289,13 +289,7 @@ A few rules:
  - Underscores (_) or dashes (-) can be used to separate ideas so it can be easy to read. 
  - Names should be kept as short as possible. Some applications (including R, though it varies by action and file type) have a letter count limit on file names.
 
-With this in mind, I might change:
-
-```{r}
-ggsave(filename = "graph.png", plot = g)
-```
-
-To `1_TestAnalysis_Graph.png` by using the below code:
+With this in mind, I might change the file name `graph.png` in `ggsave(filename = "graph.png", plot = g)` to `1_TestAnalysis_Graph.png` by using the below code:
 
 ```{r}
 counter<-0
@@ -491,7 +485,7 @@ If you want access to this R Project on GitHub, for example, you can access it w
 # usethis::use_course('https://github.com/emilyhmarkowitz/BestScriptingPractices/archive/master.zip')
 ```
 
-A NOAA README
+# NOAA README
 
 This repository is a scientific product and is not official communication of the National Oceanic and Atmospheric Administration, or the United States Department of Commerce. All NOAA GitHub project code is provided on an ‘as is’ basis and the user assumes responsibility for its use. Any claims against the Department of Commerce or Department of Commerce bureaus stemming from the use of this GitHub project will be governed by all applicable Federal law. Any reference to specific commercial products, processes, or services by service mark, trademark, manufacturer, or otherwise, does not constitute or imply their endorsement, recommendation or favoring by the Department of Commerce. The Department of Commerce seal and logo, or the seal and logo of a DOC bureau, shall not be used in any manner to imply endorsement of any commercial product or activity by DOC or the United States Government.
 

@@ -326,13 +326,9 @@ A few rules:
     (including R, though it varies by action and file type) have a
     letter count limit on file names.
 
-With this in mind, I might change:
-
-    ggsave(filename = "graph.png", plot = g)
-
-    ## Saving 7 x 5 in image
-
-To `1_TestAnalysis_Graph.png` by using the below code:
+With this in mind, I might change the file name `graph.png` in
+`ggsave(filename = "graph.png", plot = g)` to `1_TestAnalysis_Graph.png`
+by using the below code:
 
     counter<-0
     counter<-counter + 1
@@ -505,7 +501,7 @@ the “rscripts” folder:
 
     g
 
-![](README_files/figure-markdown_strict/unnamed-chunk-12-1.png)
+![](README_files/figure-markdown_strict/unnamed-chunk-11-1.png)
 
 ### 6. Save scripts in an “R Project”
 
@@ -551,7 +547,8 @@ access it with the below code.
     # library(usethis) # Automate package and project setup tasks that are otherwise performed manually.
     # usethis::use_course('https://github.com/emilyhmarkowitz/BestScriptingPractices/archive/master.zip')
 
-A NOAA README
+NOAA README
+===========
 
 This repository is a scientific product and is not official
 communication of the National Oceanic and Atmospheric Administration, or
