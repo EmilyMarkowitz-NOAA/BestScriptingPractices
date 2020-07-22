@@ -296,7 +296,7 @@ With this in mind, I might change:
 ggsave(filename = "graph.png", plot = g)
 ```
 
-To `r paste0("1_TestAnalysis_Graph.png")` by using the below code:
+To ` 1_TestAnalysis_Graph.png` by using the below code:
 
 ```{r}
 counter<-0
