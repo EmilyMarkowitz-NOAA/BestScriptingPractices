@@ -311,9 +311,9 @@ Let's say that you are working on this analysis over the course of several month
 
 #### 5.1. Set up three new folders
 
- - "rscripts", where you will save all of your rscripts, including this script we have been working on. 
- - "data" (not really relevant here, but when you have your own data, it will be!)
- - "output", where results from your analysis will go. 
+ - `rscripts`, where you will save all of your rscripts, including this script we have been working on. 
+ - `data` (not really relevant here, but when you have your own data, it will be!)
+ - `output`, where results from your analysis will go. 
 
 ```{r, warning=FALSE}
 dir.create(path = "./rscripts")

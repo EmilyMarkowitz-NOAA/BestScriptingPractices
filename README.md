@@ -350,11 +350,11 @@ suggest the following:
 
 #### 5.1. Set up three new folders
 
--   “rscripts”, where you will save all of your rscripts, including this
+-   `rscripts`, where you will save all of your rscripts, including this
     script we have been working on.
--   “data” (not really relevant here, but when you have your own data,
+-   `data` (not really relevant here, but when you have your own data,
     it will be!)
--   “output”, where results from your analysis will go.
+-   `output`, where results from your analysis will go.
 
 <!-- -->
 
