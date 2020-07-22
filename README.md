@@ -20,7 +20,8 @@ praises if you follow these.
 5.  Predictable folder structure
 6.  Save scripts in an “R Project”
 
-\#\#1. Conform to a set and predictable script structure
+1. Conform to a set and predictable script structure
+----------------------------------------------------
 
 First, so you can see exactly what you are building, we are going to
 open the document outline in R Studio. To open the document outline,
@@ -40,9 +41,7 @@ In the case of an R script, we would follow a slightly different basic
 structure by providing your metadata about the document and subsection
 headers.
 
-1.  Provide your metadata about the document (not required, but helpful)
-
-<!-- -->
+### 1.1. Provide your metadata about the document (not required, but helpful)
 
     #' ---
     #' title: The best title
@@ -50,7 +49,7 @@ headers.
     #' date: YYYY-MM-DD
     #' ---
 
-1.  Add your subsections
+### 1.2. Add your subsections
 
 You can view subsections in your document outline. This structure is up
 to the user, but, personally, I use the following.
@@ -136,7 +135,8 @@ build on that uses the above structure.
 
 This is a great start! Get ready, there are a few more things to do!
 
-\#\#2. Annotate
+2. Annotate
+-----------
 
 So, what is actually happening in this script? I just wrote it, so I
 know, in this moment, exactly what is going on. But will “future me”
@@ -220,7 +220,8 @@ purposes of this example I want to be extra explicit.
 
 ![](README_files/figure-markdown_strict/unnamed-chunk-4-1.png)
 
-\#\#3. Never repeat code
+3. Never repeat code
+--------------------
 
 I see a lot of redundancy in this code. What if I told you I could
 remove a third of the content in this script with one simple function?
@@ -300,7 +301,8 @@ For the sake of saving our work, I’ll call this file “analysis.R”
 
 ![](README_files/figure-markdown_strict/unnamed-chunk-5-1.png)
 
-\#\#4. Name files with predictable and helpful names
+4. Name files with predictable and helpful names
+------------------------------------------------
 
 “graph.png” is not a terribly helpful name for any file. A few questions
 immediately come to mind:
@@ -340,7 +342,8 @@ To `1_TestAnalysis_Graph.png` by using the below code:
 
     ## Saving 7 x 5 in image
 
-\#\#5. Predictable folder structure
+5. Predictable folder structure
+-------------------------------
 
 Let’s say that you are working on this analysis over the course of
 several months and you don’t want to overwrite anything you’ve done or
