@@ -4,16 +4,11 @@ Best Scripting Practices in an R Script
 Basic rules
 -----------
 
-This R Markdown is organized a little differently than I would organize
-a script, but as you read through you’ll notice that all of the code
-blocks are what would be in an R Script. This document, however, is a
-good example of how I might organize an R Markdown document.
-
 Below I list a few commandments of R scripting that will guide us
 through this lesson. Future you and all those around you will sing your
 praises if you follow these.
 
-1.  Conform to a set and predictable script structure
+1.  Conform to a predictable script structure
 2.  Never repeat code (that is what functions or loops are for!)
 3.  Annotate your code
 4.  Name files with predictable and helpful names
@@ -22,7 +17,7 @@ praises if you follow these.
 
 We’ll go through all of these in some detail with an example script!
 
-### 1. Conform to a set and predictable script structure
+### 1. Conform to a predictable script structure
 
 First, so you can see exactly what you are building, we are going to
 open the document outline in R Studio. To open the document outline,
@@ -140,10 +135,11 @@ This is a great start! Get ready, there are a few more things to do!
 
 So, what is actually happening in this script? I just wrote it, so I
 know, in this moment, exactly what is going on. But will “future me”
-know? They are pretty forgetful and like quick answers. As to not upset
-them, it might be best to write them a few notes in the document right
-now. We can easily do that with a single hash mark (\#) before comment
-text. See below how I integrate it into the script we just wrote.
+know? Future me is pretty forgetful and likes quick answers. As to not
+upset future me, it might be best to write them a few notes in the
+document right now. We can easily do that with a single (or more, if you
+like) hash mark (\#) before comment text. See below how I integrate it
+into the script we just wrote.
 
 Admittedly, I don’t usually write this many comments, but for the
 purposes of this example I want to be extra explicit.
@@ -226,13 +222,14 @@ I see a lot of redundancy in this code. What if I told you I could
 remove a third of the content in this script with one simple function?
 Repeating code to do the same thing over and over again will inevitably
 lead to issues and typos. Further, what if we suddenly decided we wanted
-all graphs to have a new title or change the colors? We would have to
-change that in each plot individually.
+all graphs to have a new title or change the colors? In the old script,
+we would have to change that in each plot individually. Now, with a
+function, we can change that once and it will be changed everywhere.
 
-Thought this is a small example and this version of the code would
-really be sufficient, I am sure you can see how that could become a
-massive problem in a long script you have been working tirelessly on.
-(I’ll save the below file so you can view it later, too).
+Though this is a small example and this version of the code would really
+be sufficient, I am sure you can see how that could become a massive
+problem in a long script you have been working tirelessly on. (I’ll save
+the below file so you can view it later, too).
 
 #### `analysis.R`
 
@@ -547,8 +544,8 @@ access it with the below code.
     # library(usethis) # Automate package and project setup tasks that are otherwise performed manually.
     # usethis::use_course('https://github.com/emilyhmarkowitz/BestScriptingPractices/archive/master.zip')
 
-NOAA README
-===========
+NOAA READ ME
+============
 
 This repository is a scientific product and is not official
 communication of the National Oceanic and Atmospheric Administration, or
