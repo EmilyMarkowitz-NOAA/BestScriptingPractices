@@ -488,7 +488,9 @@ g
 
 See how both the `functions` and `data` folders are 'sourced' into the `run` script? It makes the script look so much cleaner and easier to read. 
 
+
 ## 7. Save scripts in an "R Project"
+
 
 You can find more information about projects here: https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects
 
