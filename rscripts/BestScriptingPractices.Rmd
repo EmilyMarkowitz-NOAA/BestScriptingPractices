@@ -4,7 +4,7 @@ output:
   html_notebook:
     toc: true
     toc_float: true
-    toc_depth: 3
+    toc_depth: 4
     theme: flatly
 ---
 
@@ -18,28 +18,41 @@ We'll go through all of these in some detail with an example script!
 
 ## 1. Conform to a predictable script structure
 
-First, so you can see exactly what you are building, we are going to open the document outline in R Studio. To open the document outline, either: 
+**1.1. Provide your metadata about the document (not required, but helpful)**
+
+It is always a good idea to write at the top of a script who wrote it (give yourself some credit!), when, and why it was written. In the case of an R script (as opposed to an R Markdown document), we might write something like the below at the top of our document. 
+
+```{r}
+#' ---
+#' title: The best title
+#' purpose: blarg
+#' author: You
+#' date: YYYY-MM-DD
+#' ---
+```
+
+Since the above is commented out, it is completely inert. The R does not run or use this information in anyway. 
+
+Similarly, R Mardown documents have an element built into the top of their documents called a YAML, which is used in a slightly different way by R, but accomplishes a similar feat. The words you use in a YAML (like 'title,' 'author,' etc.) are specific to the YAML, so don't add anything in there that YAMLs don't use. 
+
+```{r, include=FALSE, eval=FALSE}
+---
+title: "The best title"
+author: "You"
+date: "YYYY-MM-DD"
+output: html_document
+---
+```
+
+**1.2. Add your subsections**
+
+Next, so you can see exactly what you are building, we are going to open the document outline in R Studio. To open the document outline, either: 
 
  - Press `Control` + `Shift`+ `O`
  
  - Click the 'outline' button in the most upper right corner of your text editor window. 
  
 Outlines are available for a document types, including R Markdown and R Scripts. You'll notice in this R Markdown document that different sections headers are listed in the outline for this document. You can click on those to navigate this document.  
-
-
-In the case of an R script, we would follow a slightly different basic structure by providing your metadata about the document and subsection headers. 
-
-**1.1. Provide your metadata about the document (not required, but helpful)**
-
-```{r}
-#' ---
-#' title: The best title
-#' author: You
-#' date: YYYY-MM-DD
-#' ---
-```
-
-**1.2. Add your subsections**
 
 You can view subsections in your document outline. This structure is up to the user, but, personally, I use the following. 
 
@@ -60,15 +73,22 @@ You can view subsections in your document outline. This structure is up to the u
 
 ```
 
-In the above example, I use `# *** [text] ----` in an attempt to make a level down subsection. Consider, "Correlation", "Visualizations", and "Save Outputs" are all part of doing an analysis. You can use anything to take the space of the asterisk (`*`) but I think asterisks look best. 
+In the above example, I use `# *** [text] ----` in an attempt to make a level down subsection. Here I consider "Correlation", "Visualizations", and "Save Outputs" are all part of doing an analysis. You can use anything to take the space of the asterisk (`*`) but I think asterisks look best. 
 
 These headers work the same as if I wrote them as `# Libraries ####`. 
 
-Below is a short example of a reasonably organized R script that we will build on that uses the above structure. 
+Below is a short example of a reasonably organized R script that we will build on more. This script is going to correlate some columns and make some plots using one of R's built in datasets called `mpg` from the `ggplot2` package. To learn more about `mpg`, type `??mpg` in your console, but essentially this dataset describes fuel economy data from 1999 to 2008 for 38 popular models of cars where: 
 
+ - **displ**: engine displacement, in litres
+
+ - **cty**: city miles per gallon
+ 
+ - **hwy**: highway miles per gallon
+ 
 ```{r, warning=FALSE}
 #' ---
-#' title: The best title
+#' title: Engine displacement in cities and on highways. 
+#' purpose: This script is going to correlate the displ, cty, and hwy columns of R's built in dataset called mpg from the ggplot2 package and make some plots of those correlations. 
 #' author: You
 #' date: YYYY-MM-DD
 #' ---
@@ -116,17 +136,18 @@ g
 
 ```
 
-This is a great start! Get ready, there are a few more things to do!
+This is a great start! Here we are using a predictable structure for our code, we know where to look for each section, and it looks great! But get ready, there are a few more things to do!
 
 ## 2. Annotate
 
-So, what is actually happening in this script? I just wrote it, so I know, in this moment, exactly what is going on. But will "future me" know? Future me is pretty forgetful and likes quick answers. As to not upset future me, it might be best to write them a few notes in the document right now. We can easily do that with a single (or more, if you like) hash mark (#) before comment text. See below how I integrate it into the script we just wrote.
+So, what is actually happening in this script? I just wrote it, so *I know*, ***in this moment***, exactly what is going on. But will *"future me"* remember? Future me is pretty forgetful and likes quick answers. As to not upset this irratable future me, it might be best to write a few notes in the document right now. We can easily do that with a single (or more, if you like) hash mark (#) before comment text. See below how I integrate it into the script we just wrote.
 
 Admittedly, I don't usually write this many comments, but for the purposes of this example I want to be extra explicit. 
 
 ```{r, warning=FALSE}
 #' ---
-#' title: The best title
+#' title: Engine displacement in cities and on highways. 
+#' purpose: This script is going to correlate the displ, cty, and hwy columns of R's built in dataset called mpg from the ggplot2 package and make some plots of those correlations. 
 #' author: You
 #' date: YYYY-MM-DD
 #' ---
@@ -191,17 +212,22 @@ g
 
 ```
 
+Wow! I will never be in the dark again about past me's true genius. I would feel comfortable sending this off to any colleague - maybe even colleagues who doesn't code?! - because I know they will understand what I was trying to do. 
+
 ## 3.  Never repeat code
 
-I see a lot of redundancy in this code. What if I told you I could remove a third of the content in this script with one simple function? Repeating code to do the same thing over and over again will inevitably lead to issues and typos. Further, what if we suddenly decided we wanted all graphs to have a new title or change the colors? In the old script, we would have to change that in each plot individually. Now, with a function, we can change that once and it will be changed everywhere. 
+I see a lot of redundancy in this code. What if I told you I could remove a third of the content in this script with one simple function? Repeating code to do the same thing over and over again will inevitably lead to mistakes, conflicts, and typos. Further, what if we suddenly decided we wanted all graphs to have a new title or change the colors? In the old script, we would have to change the code going into each plot individually. Now, with a function, we can change that once in just one place and it will be changed everywhere. 
 
-Though this is a small example and this version of the code would really be sufficient, I am sure you can see how that could become a massive problem in a long script you have been working tirelessly on. (I'll save the below file so you can view it later, too).
+Though this is a small example and this version of the code would really be sufficient, I am sure you can see how these issues could become a massive problem in a long script you have been working tirelessly on. 
 
 #### `analysis.R`
 
+(I'll save the below file as the above name so you can view it later, too).
+
 ```{r, warning=FALSE}
 #' ---
-#' title: The best title
+#' title: Engine displacement in cities and on highways. 
+#' purpose: This script is going to correlate the displ, cty, and hwy columns of R's built in dataset called mpg from the ggplot2 package and make some plots of those correlations. 
 #' author: You
 #' date: YYYY-MM-DD
 #' ---
@@ -261,7 +287,7 @@ g
 
 ## 4. Name files with predictable and helpful names
 
-"graph.png" is not a terribly helpful name for any file. A few questions immediately come to mind: 
+"graph.png" is not a terribly helpful name for any file. Good in a pinch, not in the long run. There are a few questions immediately come to mind: 
 
  - What analysis does this plot belong to?
  - At what part of the analysis was this output created? e.g., order?
@@ -270,12 +296,12 @@ g
  
 I usually try to keep all of my files to similar naming structure like this one. 
 
-`[Order]_[AnalysisName]_[Description].filetype`
+`[Order]_[AnalysisName]_[Description].[filetype]`
 
 A few rules: 
 
- - No spaces. You can use ThisLetterCasing to separate words
- - Underscores (_) or dashes (-) can be used to separate ideas so it can be easy to read. 
+ - No spaces. You can use ThisLetterCasing to separate words.
+ - Use underscores (_) or dashes (-) to separate ideas so it can be easy to read. 
  - Names should be kept as short as possible. Some applications (including R, though it varies by action and file type) have a letter count limit on file names.
 
 With this in mind, I might change the file name `graph.png` in `ggsave(filename = "graph.png", plot = g)` to `1_TestAnalysis_Graph.png` by using the below code:
@@ -287,16 +313,19 @@ filename = paste0(counter, "_TestAnalysis_Graph.png")
 ggsave(filename = filename, plot = g)
 ```
 
+The counter is not really necessary, but is useful if I want to keep the order of these files in my file folder. If you have to make many of these (or any other) plots but don't want to have to search for them in a sea of files, numbering can help make their location in the folder predictable. 
 
 ## 5. Predictable folder structure
 
-Let's say that you are working on this analysis over the course of several months and you don't want to overwrite anything you've done or get lost in a sea of files. It's a little complicated to set up, but I suggest the following: 
+Let's say that you are working on this analysis over the course of several months and you don't want to overwrite your outputs each time you run your script or get lost in a sea of files. It's a little complicated to set up, but I suggest the following: 
 
 **5.1. Set up three new folders**
 
- - `rscripts`, where you will save all of your rscripts, including this script we have been working on. 
- - `data` (not really relevant here, but when you have your own data, it will be!)
- - `output`, where results from your analysis will go. 
+In a given project, I keep all of my files (generally) in three folders. Note that `"./"` is R shorthand for "current directory," which would be the directory of your R Project.
+
+ - **`rscripts`**: where you will save all of your rscripts, including this script we have been working on. 
+ - **`data`**: where you will store all of your local data that goes into a script (though not really relevant here since we are using some of R's in-house data).
+ - **`output`**: where results from your analysis will go. 
 
 ```{r, warning=FALSE}
 dir.create(path = "./rscripts")
@@ -304,18 +333,26 @@ dir.create(path = "./data")
 dir.create(path = "./output")
 ```
 
-**5.2. Create a folder for that data run**
 
-For each day's run of your analysis, you might like to set up a new file to save everything in. Within that folder, you might also like to keep a copy of what you used to create this file. I recommend automatically creating folders within this new output folder for your rscripts, rawdata, figures, etc.
+**5.2. Create a folder for that analysis run within the output folder**
+
+For each day's run of your analysis, you might like to set up a new file to save everything in. Within that folder, you might also like to keep a copy of what you used to create this file. I recommend automatically creating folders within this new output folder for your rscripts, rawdata, figures, etc. This might seem predicable, but with the: 
+
+ - **`figures`** folder, we save all of our output figures from the analysis. 
+ - **`rscripts`** folder, we save all of the rscripts we used to create this analysis with. I know many of you must be thinking that this is redundant in a world with GitHub, but it gives me some peace of mind to have all of these things together. Here I use a simple loop to find all of the files in my `./rscripts/` file in the root directory and copy them to the output's `./output/[folder for that day's code run]/rscripts/` folder. 
+ - **`rawdata`** folder, we store all of the raw data we used to create this analysis. 
+
+There is nothing stopping you from having other folders here with different outputs, like `tables` or `worddocuments`. Just keep the names helpful and predictable. 
 
 ```{r, warning=FALSE}
 # Directories -------
-outputfolder<-paste0("./output/TestAnalysis_", Sys.Date(), "/")
+outputfolder<-paste0("./output/TestAnalysis_", Sys.Date(), "/") # Define the name of the new output folder. Sys.Date() will add today's name to the file folder's name. 
 dir.create(path = outputfolder) # Create folder for today's analysis run
 
 dir.create(path = paste0(outputfolder, "rawdata"))
 dir.create(path = paste0(outputfolder, "figures"))
 dir.create(path = paste0(outputfolder, "rscripts"))
+
 listfiles<-list.files(path = "./rscripts/") #Find all files in "./rscripts"
 for (i in 1:length(listfiles)){ # Save all of those files to the rscripts folder in the output folder
   file.copy(from = paste0("./rscripts/", listfiles[i]), 
@@ -325,19 +362,21 @@ for (i in 1:length(listfiles)){ # Save all of those files to the rscripts folder
 
 ```
 
-**5.3. In a world where your analyses are a bit more complicated, I find that it is good to split your code into the following files: **
+## 6. Scripts with specific tasks
 
- - `functions.R`, this file will be where all of the funcitons used to run your analysis. 
- - `data.R`, this file will load all of your data and edit it for your analysis. Never hand edit data from a source. If you can, always manipulate it so you never destroy your original data copy. 
- - `run.R`, this file will source the other files you created and run the analysis. We want this to have the bare-bones of what we need for our analysis. 
+In a world where your analyses are a bit more complicated, I find that it is good to split your code into the following files: 
 
+ - **`functions.R`**, this file will be where all of the funcitons used to run your analysis. 
+ - **`data.R`**, this file will load all of your data and edit it for your analysis. Never hand edit data from a source. If you can, always manipulate it so you never destroy your original data copy. 
+ - **`run.R`**, this file will source the other files you created and run the analysis. We want this to have the bare-bones of what we need for our analysis. 
 
 Such that your new files would look like this and would all be saved in the "rscripts" folder: 
 
 #### `functions.R`
 
 ```{r, warning=FALSE}
-#' title: The best title
+#' title: Engine displacement in cities and on highways. 
+#' purpose: This script is going to correlate the displ, cty, and hwy columns of R's built in dataset called mpg from the ggplot2 package and make some plots of those correlations. 
 #' author: You
 #' date: YYYY-MM-DD
 #' ---
@@ -347,7 +386,7 @@ library(ggpubr) # Arranges multiple ggplots on the same page
 
 
 # Directories -------
-outputfolder<-paste0("./output/TestAnalysis_", Sys.Date(), "/")
+outputfolder<-paste0("./output/TestAnalysis_", Sys.Date(), "/") # Define the name of the new output folder. Sys.Date() will add today's name to the file folder's name. 
 dir.create(path = outputfolder) # Create folder for today's analysis run
 
 dir.create(path = paste0(outputfolder, "rawdata"))
@@ -385,7 +424,8 @@ createplot<-function(x, y) {
 #### `data.R`
 
 ```{r}
-#' title: The best title
+#' title: Engine displacement in cities and on highways. 
+#' purpose: This script is going to correlate the displ, cty, and hwy columns of R's built in dataset called mpg from the ggplot2 package and make some plots of those correlations. 
 #' author: You
 #' date: YYYY-MM-DD
 #' ---
@@ -413,7 +453,8 @@ write.csv(x = data.frame(mpg), file = paste0(outputfolder, "rawdata/mpg.csv"))
 #### `run.R`
 
 ```{r, warning=FALSE}
-#' title: The best title
+#' title: Engine displacement in cities and on highways. 
+#' purpose: This script is going to correlate the displ, cty, and hwy columns of R's built in dataset called mpg from the ggplot2 package and make some plots of those correlations. 
 #' author: You
 #' date: YYYY-MM-DD
 #' ---
@@ -445,7 +486,9 @@ g
 
 ```
 
-## 6. Save scripts in an "R Project"
+See how both the `functions` and `data` folders are 'sourced' into the `run` script? It makes the script look so much cleaner and easier to read. 
+
+## 7. Save scripts in an "R Project"
 
 You can find more information about projects here: https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects
 
@@ -465,16 +508,15 @@ Projects manifest themselves, more or less, as fancy folders where R has automat
  - Creates a project file (with an .Rproj extension) within the project directory. This file contains various project options (discussed below) and can also be used as a shortcut for opening the project directly from the filesystem.
  - Creates a hidden directory (named .Rproj.user) where project-specific temporary files (e.g. auto-saved source documents, window-state, etc.) are stored. This directory is also automatically added to .Rbuildignore, .gitignore, etc. if required.
 
-Now, the project is loaded into RStudio and the name is displayed in the Projects toolbar (which is located on the far right side of the main toolbar). Additionally, the project (and all progress on the files) will be easily loadable from `File`>`Recent Projects`. 
+Now, the project is loaded into RStudio and the name is displayed in the Projects toolbar (which is located on the far right side of the main toolbar). Additionally, the project (and all progress on the files) will be easily loadable from `File`>`Recent Projects` or `File`>`Open Project`. 
 
-If you want access to this R Project on GitHub, for example, you can access it with the below code. 
+If you want access to this R Project from my GitHub, for example, you can access it by going to the GitHub link below and downloading it, or with the below code. 
 
-```{r}
-# library(usethis) # Automate package and project setup tasks that are otherwise performed manually.
-# usethis::use_course('https://github.com/emilyhmarkowitz/BestScriptingPractices/archive/master.zip')
+```{r, eval=FALSE}
+install.packages("usethis")
+library(usethis) # Automate package and project setup tasks that are otherwise performed manually.
+usethis::use_course(url = 'https://github.com/emilyhmarkowitz/BestScriptingPractices/archive/master.zip', 
+                    destdir = "your/local/directory/")
 ```
 
-# NOAA READ ME
-
-This repository is a scientific product and is not official communication of the National Oceanic and Atmospheric Administration, or the United States Department of Commerce. All NOAA GitHub project code is provided on an ‘as is’ basis and the user assumes responsibility for its use. Any claims against the Department of Commerce or Department of Commerce bureaus stemming from the use of this GitHub project will be governed by all applicable Federal law. Any reference to specific commercial products, processes, or services by service mark, trademark, manufacturer, or otherwise, does not constitute or imply their endorsement, recommendation or favoring by the Department of Commerce. The Department of Commerce seal and logo, or the seal and logo of a DOC bureau, shall not be used in any manner to imply endorsement of any commercial product or activity by DOC or the United States Government.
 
