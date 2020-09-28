@@ -1,5 +1,6 @@
 ---
-title: "Best Scripting Practices"
+title: ""
+author: "Emily Markowitz (Emily.Markowitz@NOAA.gov)"
 output:
   html_notebook:
     toc: true
@@ -8,17 +9,18 @@ output:
     theme: flatly
 ---
 
-# Basic rules
+# Best Scripting Practices {.tabset .tabset-fade .tabset-pills}
 
 Below I list a few commandments of R scripting that will guide us through this lesson. Future you and all those around you will sing your praises if you follow these.
 
 We'll go through all of these in some detail with an example script!
 
-# Tutorial {.tabset .tabset-fade .tabset-pills}
-
 ## 1. Conform to a predictable script structure
 
-**1.1. Provide your metadata about the document (not required, but helpful)**
+### **1. Conform to a predictable script structure**
+
+
+#### **1.1. Provide your metadata about the document (not required, but helpful)**
 
 It is always a good idea to write at the top of a script who wrote it (give yourself some credit!), when, and why it was written. In the case of an R script (as opposed to an R Markdown document), we might write something like the below at the top of our document. 
 
@@ -35,7 +37,7 @@ Since the above is commented out, it is completely inert. The R does not run or 
 
 Similarly, R Mardown documents have an element built into the top of their documents called a YAML, which is used in a slightly different way by R, but accomplishes a similar feat. The words you use in a YAML (like 'title,' 'author,' etc.) are specific to the YAML, so don't add anything in there that YAMLs don't use. 
 
-```{r, include=FALSE, eval=FALSE}
+```{r, include, eval=FALSE}
 ---
 title: "The best title"
 author: "You"
@@ -44,7 +46,7 @@ output: html_document
 ---
 ```
 
-**1.2. Add your subsections**
+#### **1.2. Add your subsections**
 
 Next, so you can see exactly what you are building, we are going to open the document outline in R Studio. To open the document outline, either: 
 
@@ -52,12 +54,25 @@ Next, so you can see exactly what you are building, we are going to open the doc
  
  - Click the 'outline' button in the most upper right corner of your text editor window. 
  
+Here is the outline of an example anaysis. 
+
+![Outline of an example analysis.](./ExampleOutline.JPG)
+
+ 
+(And here is an example of what the outline for this R Markdown HTML report looks like, which is completely  different.)
+
+![Outline for this R Markdown HTML Notebook.](./ThisReportOutline.JPG)
+
+ 
 Outlines are available for a document types, including R Markdown and R Scripts. You'll notice in this R Markdown document that different sections headers are listed in the outline for this document. You can click on those to navigate this document.  
 
 You can view subsections in your document outline. This structure is up to the user, but, personally, I use the following. 
 
 ```{r}
-# Libraries ---------
+
+# Directories ---------
+
+# Libraries -------
 
 # Import Data -----
 
@@ -93,7 +108,9 @@ Below is a short example of a reasonably organized R script that we will build o
 #' date: YYYY-MM-DD
 #' ---
 
-# Libraries ---------
+# Directories ---------
+
+# Libraries -------
 
 library(ggplot2)
 library(ggpubr)
@@ -140,6 +157,8 @@ This is a great start! Here we are using a predictable structure for our code, w
 
 ## 2. Annotate
 
+### **2. Annotate**
+
 So, what is actually happening in this script? I just wrote it, so *I know*, ***in this moment***, exactly what is going on. But will *"future me"* remember? Future me is pretty forgetful and likes quick answers. As to not upset this irratable future me, it might be best to write a few notes in the document right now. We can easily do that with a single (or more, if you like) hash mark (#) before comment text. See below how I integrate it into the script we just wrote.
 
 Admittedly, I don't usually write this many comments, but for the purposes of this example I want to be extra explicit. 
@@ -151,6 +170,10 @@ Admittedly, I don't usually write this many comments, but for the purposes of th
 #' author: You
 #' date: YYYY-MM-DD
 #' ---
+
+# Directories ---------
+
+dir<-getwd() #This is the current directory. This is not currently needed, thought. 
 
 # Libraries ---------
 
@@ -216,6 +239,8 @@ Wow! I will never be in the dark again about past me's true genius. I would feel
 
 ## 3.  Never repeat code
 
+### **3.  Never repeat code**
+
 I see a lot of redundancy in this code. What if I told you I could remove a third of the content in this script with one simple function? Repeating code to do the same thing over and over again will inevitably lead to mistakes, conflicts, and typos. Further, what if we suddenly decided we wanted all graphs to have a new title or change the colors? In the old script, we would have to change the code going into each plot individually. Now, with a function, we can change that once in just one place and it will be changed everywhere. 
 
 Though this is a small example and this version of the code would really be sufficient, I am sure you can see how these issues could become a massive problem in a long script you have been working tirelessly on. 
@@ -231,6 +256,12 @@ Though this is a small example and this version of the code would really be suff
 #' author: You
 #' date: YYYY-MM-DD
 #' ---
+
+# Directories ---------
+
+dir<-getwd() #This is the current directory. This is not currently needed, thought. 
+
+# Libraries ---------
 
 library(ggplot2) # Makes pretty plots
 library(ggpubr) # Arranges multiple ggplots on the same page
@@ -287,6 +318,9 @@ g
 
 ## 4. Name files with predictable and helpful names
 
+### **4. Name files with predictable and helpful names**
+
+
 "graph.png" is not a terribly helpful name for any file. Good in a pinch, not in the long run. There are a few questions immediately come to mind: 
 
  - What analysis does this plot belong to?
@@ -296,12 +330,12 @@ g
  
 I usually try to keep all of my files to similar naming structure like this one. 
 
-`[Order]_[AnalysisName]_[Description].[filetype]`
+`[Order]-[AnalysisName]-[Description].[filetype]`
 
 A few rules: 
 
  - No spaces. You can use ThisLetterCasing to separate words.
- - Use underscores (_) or dashes (-) to separate ideas so it can be easy to read. 
+ - Use underscores (_) or dashes (-) to separate ideas so it can be easy to read. Python has issues with underscores (_), so you may want to use dashes (-). 
  - Names should be kept as short as possible. Some applications (including R, though it varies by action and file type) have a letter count limit on file names.
 
 With this in mind, I might change the file name `graph.png` in `ggsave(filename = "graph.png", plot = g)` to `1_TestAnalysis_Graph.png` by using the below code:
@@ -317,9 +351,11 @@ The counter is not really necessary, but is useful if I want to keep the order o
 
 ## 5. Predictable folder structure
 
+### **5. Predictable folder structure**
+
 Let's say that you are working on this analysis over the course of several months and you don't want to overwrite your outputs each time you run your script or get lost in a sea of files. It's a little complicated to set up, but I suggest the following: 
 
-**5.1. Set up three new folders**
+#### **5.1. Set up three new folders**
 
 In a given project, I keep all of my files (generally) in three folders. Note that `"./"` is R shorthand for "current directory," which would be the directory of your R Project.
 
@@ -333,8 +369,10 @@ dir.create(path = "./data")
 dir.create(path = "./output")
 ```
 
+![The root folder's stucture.](./FileStructure1.JPG)
 
-**5.2. Create a folder for that analysis run within the output folder**
+
+#### **5.2. Create a folder for that analysis run within the output folder**
 
 For each day's run of your analysis, you might like to set up a new file to save everything in. Within that folder, you might also like to keep a copy of what you used to create this file. I recommend automatically creating folders within this new output folder for your rscripts, rawdata, figures, etc. This might seem predicable, but with the: 
 
@@ -342,10 +380,14 @@ For each day's run of your analysis, you might like to set up a new file to save
  - **`rscripts`** folder, we save all of the rscripts we used to create this analysis with. I know many of you must be thinking that this is redundant in a world with GitHub, but it gives me some peace of mind to have all of these things together. Here I use a simple loop to find all of the files in my `./rscripts/` file in the root directory and copy them to the output's `./output/[folder for that day's code run]/rscripts/` folder. 
  - **`rawdata`** folder, we store all of the raw data we used to create this analysis. 
 
+![The output folder's stucture.](./FileStructure3.JPG)
+
 There is nothing stopping you from having other folders here with different outputs, like `tables` or `worddocuments`. Just keep the names helpful and predictable. 
 
 ```{r, warning=FALSE}
+
 # Directories -------
+
 outputfolder<-paste0("./output/TestAnalysis_", Sys.Date(), "/") # Define the name of the new output folder. Sys.Date() will add today's name to the file folder's name. 
 dir.create(path = outputfolder) # Create folder for today's analysis run
 
@@ -364,11 +406,15 @@ for (i in 1:length(listfiles)){ # Save all of those files to the rscripts folder
 
 ## 6. Scripts with specific tasks
 
+### **6. Scripts with specific tasks**
+
 In a world where your analyses are a bit more complicated, I find that it is good to split your code into the following files: 
 
  - **`functions.R`**, this file will be where all of the funcitons used to run your analysis. 
  - **`data.R`**, this file will load all of your data and edit it for your analysis. Never hand edit data from a source. If you can, always manipulate it so you never destroy your original data copy. 
  - **`run.R`**, this file will source the other files you created and run the analysis. We want this to have the bare-bones of what we need for our analysis. 
+
+![The output rscripts's stucture.](./FileStructure2.JPG)
 
 Such that your new files would look like this and would all be saved in the "rscripts" folder: 
 
@@ -381,11 +427,13 @@ Such that your new files would look like this and would all be saved in the "rsc
 #' date: YYYY-MM-DD
 #' ---
 
+# Libraries -------
+
 library(ggplot2) # Makes pretty plots
 library(ggpubr) # Arranges multiple ggplots on the same page
 
-
 # Directories -------
+
 outputfolder<-paste0("./output/TestAnalysis_", Sys.Date(), "/") # Define the name of the new output folder. Sys.Date() will add today's name to the file folder's name. 
 dir.create(path = outputfolder) # Create folder for today's analysis run
 
@@ -429,6 +477,8 @@ createplot<-function(x, y) {
 #' author: You
 #' date: YYYY-MM-DD
 #' ---
+
+# Libraries ---------
 
 library(ggplot2) # Makes pretty plots
 
@@ -491,18 +541,23 @@ See how both the `functions` and `data` folders are 'sourced' into the `run` scr
 
 ## 7. Save scripts in an "R Project"
 
+### **7. Save scripts in an "R Project"**
 
 You can find more information about projects here: https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects
 
 R projects are important for: 
 
- - organizing your, well, projects
+ - organizing your analysis from the nuts and bolts (functions and packages) to analysis output (r scripts). 
  - sharing your projects to Git Hub
  - so you can establish a 'relative' directory (as opposed to a local directory that requires a specific address in your computer)
  - creating R Shiny apps, packages, etc. (beyond the scope of this example)
  
 To create a project for this work, click `File`>`New Project`>`Existing Directory`
- 
+
+![File>New Project>Existing Directory](./NewProject.jpg)
+
+![File>New Project>Existing Directory](./NewProject2.JPG)
+
 We selected "Existing Directory" since we already have one. It is known as our parent directory and what I have been referring to as `./` in the directory name. 
 
 Projects manifest themselves, more or less, as fancy folders where R has automatically deposited the following files: 
