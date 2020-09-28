@@ -1,5 +1,5 @@
 ---
-title: ""
+title: "Best Scripting Practices"
 author: "Emily Markowitz (Emily.Markowitz@NOAA.gov)"
 output:
   html_notebook:
@@ -9,7 +9,6 @@ output:
     theme: flatly
 ---
 
-# Best Scripting Practices {.tabset .tabset-fade .tabset-pills}
 
 Below I list a few commandments of R scripting that will guide us through this lesson. Future you and all those around you will sing your praises if you follow these.
 
