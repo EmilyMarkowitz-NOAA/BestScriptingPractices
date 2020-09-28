@@ -334,7 +334,7 @@ I usually try to keep all of my files to similar naming structure like this one.
 
 A few rules: 
 
- - No spaces. You can use ThisLetterCasing to separate words.
+ - No spaces. You can use ThisLetterCasing or thisLetterCasing to separate words.
  - Use underscores (_) or dashes (-) to separate ideas so it can be easy to read. Python has issues with underscores (_), so you may want to use dashes (-). 
  - Names should be kept as short as possible. Some applications (including R, though it varies by action and file type) have a letter count limit on file names.
 
