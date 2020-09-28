@@ -9,7 +9,6 @@ output:
     theme: flatly
 ---
 
-
 Below I list a few commandments of R scripting that will guide us through this lesson. Future you and all those around you will sing your praises if you follow these.
 
 We'll go through all of these in some detail with an example script!
