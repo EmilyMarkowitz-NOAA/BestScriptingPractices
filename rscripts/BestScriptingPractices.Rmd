@@ -98,7 +98,7 @@ Below is a short example of a reasonably organized R script that we will build o
  
  - **hwy**: highway miles per gallon
  
-```{r, warning=FALSE}
+```{r, warning=FALSE, include=TRUE, fig.cap="Output from script"}
 #' ---
 #' title: Engine displacement in cities and on highways. 
 #' purpose: This script is going to correlate the displ, cty, and hwy columns of R's built in dataset called mpg from the ggplot2 package and make some plots of those correlations. 
@@ -150,6 +150,7 @@ ggsave(filename = "graph.png", plot = g)
 g
 
 ```
+
 
 This is a great start! Here we are using a predictable structure for our code, we know where to look for each section, and it looks great! But get ready, there are a few more things to do!
 
@@ -425,10 +426,16 @@ Such that your new files would look like this and would all be saved in the "rsc
 #' date: YYYY-MM-DD
 #' ---
 
-# Libraries -------
+rm(list=ls())
 
-library(ggplot2) # Makes pretty plots
-library(ggpubr) # Arranges multiple ggplots on the same page
+# Libraries -------
+PKG <- c("ggplot2", "ggpubr")
+for (p in PKG) {
+  if(!require(p,character.only = TRUE)) {  
+    install.packages(p)
+    require(p,character.only = TRUE)}
+}
+
 
 # Directories -------
 
