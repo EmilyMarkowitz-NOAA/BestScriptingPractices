@@ -544,7 +544,7 @@ access it with the below code.
     # library(usethis) # Automate package and project setup tasks that are otherwise performed manually.
     # usethis::use_course('https://github.com/emilyhmarkowitz/BestScriptingPractices/archive/master.zip')
 
-NOAA READ ME
+NOAA README
 ============
 
 This repository is a scientific product and is not official
@@ -560,3 +560,10 @@ endorsement, recommendation or favoring by the Department of Commerce.
 The Department of Commerce seal and logo, or the seal and logo of a DOC
 bureau, shall not be used in any manner to imply endorsement of any
 commercial product or activity by DOC or the United States Government.
+
+
+License
+============
+
+Software code created by U.S. Government employees is not subject to copyright in the United States (17 U.S.C. §105). The United States/Department of Commerce reserve all rights to seek and obtain copyright protection in countries other than the United States for Software authored in its entirety by the Department of Commerce. To this end, the Department of Commerce hereby grants to Recipient a royalty-free, nonexclusive license to use, copy, and create derivative works of the Software outside of the United States.
+
