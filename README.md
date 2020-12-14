@@ -542,7 +542,7 @@ If you want access to this R Project on GitHub, for example, you can
 access it with the below code.
 
     # library(usethis) # Automate package and project setup tasks that are otherwise performed manually.
-    # usethis::use_course('https://github.com/emilyhmarkowitz/BestScriptingPractices/archive/master.zip')
+    # usethis::use_course('https://github.com/EmilyMarkowitz-NOAA/BestScriptingPractices/archive/master.zip')
 
 NOAA README
 ============
